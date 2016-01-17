@@ -25,10 +25,15 @@ public class ForecastAdapter extends CursorAdapter {
 
     public final int VIEW_TYPE_TODAY = 0;
     public final int VIEW_TYPE_FUTURE_DAY = 1;
+    private static boolean mUseTodayLayout;
+
+    public void setUseTodayLayout(boolean useTodayLayout){
+        mUseTodayLayout = useTodayLayout;
+    }
 
     @Override
     public int getItemViewType(int position){
-        return (position==0) ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
+            return (position==0 && mUseTodayLayout) ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
     }
 
     @Override
@@ -112,16 +117,22 @@ public class ForecastAdapter extends CursorAdapter {
         //TextView date_view = (TextView)view.findViewById(R.id.list_item_date_textview);
         viewHolder.dateView.setText(Utility.getFriendlyDayString(context, dateInMillis));
 
+        String weather_content_desc = "Weather Today is ";
         String description = cursor.getString(ForecastFragment.COL_WEATHER_DESC);
         //TextView desc_view = (TextView)view.findViewById(R.id.list_item_forecast_textview);
+        viewHolder.descriptionView.setContentDescription(weather_content_desc+description);
         viewHolder.descriptionView.setText(description);
 
         int high = cursor.getInt(ForecastFragment.COL_WEATHER_MAX_TEMP);
         //TextView high_view = (TextView)view.findViewById(R.id.list_item_high_textview);
+        viewHolder.highTempView.setContentDescription("Forecast for Maximum temperature today is "
+                                                                                    +Integer.toString(high));
         viewHolder.highTempView.setText(Utility.formatTemperature(context,high, isMetric));
 
         int low = cursor.getInt(ForecastFragment.COL_WEATHER_MIN_TEMP);
         //TextView low_view = (TextView)view.findViewById(R.id.list_item_low_textview);
+        viewHolder.lowTempView.setContentDescription("Forecast for Minimum temperature today is "
+                +Integer.toString(low));
         viewHolder.lowTempView.setText(Utility.formatTemperature(context,low, isMetric));
     }
 

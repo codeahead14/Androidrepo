@@ -1,6 +1,8 @@
 package com.example.android.sunshine.app;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -24,6 +26,12 @@ public class Settings extends PreferenceActivity
         addPreferencesFromResource(R.xml.pref_general);
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_temp_set)));
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public Intent getParentActivityIntent() {
+        return super.getParentActivityIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
 
     private void bindPreferenceSummaryToValue(Preference preference) {
@@ -67,7 +75,7 @@ public class Settings extends PreferenceActivity
                                  Bundle savedInstanceState) {
             Intent intent = getActivity().getIntent();
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-            if(intent!=null && intent.hasExtra(Intent.EXTRA_TEXT)){
+            if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
                 String forecast = intent.getStringExtra(Intent.EXTRA_TEXT);
                 //((TextView)rootView.findViewById(R.id.detail_text)).setText(forecast);
             }
