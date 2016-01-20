@@ -21,20 +21,26 @@ public class SunshineCustomView extends View{
 
     public SunshineCustomView(Context context, AttributeSet attributeSet){
         super(context, attributeSet);
+        paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(2);
+        paint.setTextSize(25);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.BLUE);
     }
 
     public SunshineCustomView(Context context, AttributeSet attributeSet, int DefaultStyle){
         super(context,attributeSet,DefaultStyle);
     }
 
-    private void init() {
+    /*private void init() {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStrokeWidth(2);
         paint.setTextSize(25);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.WHITE);
-    }
+    }*/
 
 
     @Override
