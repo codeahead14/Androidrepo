@@ -25,6 +25,11 @@ public class ForecastAdapter extends CursorAdapter {
 
     public final int VIEW_TYPE_TODAY = 0;
     public final int VIEW_TYPE_FUTURE_DAY = 1;
+    private static boolean mUseTodayLayout;
+
+    public void setUseTodayLayout(boolean useTodayLayout){
+        mUseTodayLayout = useTodayLayout;
+    }
 
     @Override
     public int getItemViewType(int position){
@@ -36,9 +41,6 @@ public class ForecastAdapter extends CursorAdapter {
         return 2;
     }
 
-    /**
-     * Prepare the weather high/lows for presentation.
-     */
     private String formatHighLows(double high, double low) {
         boolean isMetric = Utility.isMetric(mContext);
         String highLowStr = Utility.formatTemperature(mContext,high, isMetric) + "/" + Utility.formatTemperature(mContext,low, isMetric);

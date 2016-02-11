@@ -12,20 +12,20 @@
         <!-- Header: Day, Date -->
         <TextView
             android:id="@+id/detail_day_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tomorrow" />
 
         <TextView
             android:id="@+id/detail_date_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="June 24"/>
 
         <!-- Main content: high, low, art, weather state -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
